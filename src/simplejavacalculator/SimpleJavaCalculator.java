@@ -20,8 +20,7 @@ public class SimpleJavaCalculator {
    
    public static void main(String[] args) {
       try {
-         UI uiCal = new UI();
-         uiCal.init();
+         new UI();
       }
       catch (Exception e) {
          System.out.println(e.getMessage());   

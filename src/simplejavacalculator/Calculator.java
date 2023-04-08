@@ -384,8 +384,9 @@ public class Calculator {
      * @param text - the text field to display the result
      * @param listStack - the stack of lists for undo/redo functionality
      */
+    
     public void handleClear(ArrayList<String> currentNumAndOp, JTextField history, JTextField text, Stack<ArrayList<String>> listStack) {
-        currentNumAndOp = new ArrayList<String>();
+        currentNumAndOp.clear();
         listStack.clear();
         listStack.push(currentNumAndOp);
         text.setText("0");

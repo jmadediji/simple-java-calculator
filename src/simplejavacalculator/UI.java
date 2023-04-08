@@ -54,6 +54,7 @@ public class UI extends JFrame implements ActionListener {
             "(", ")", "0", ".", "=",
             "d->f", "rad", "10^x", "\u03C0", 
         };
+        
         panel = new JPanel();                       // Creates JPanel for the 36 buttons
         panel.setLayout(new GridLayout(9, 5)); 
         buttons = new JButton[45];                              // 38 buttons and counting
