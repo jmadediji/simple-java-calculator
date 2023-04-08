@@ -127,25 +127,25 @@ public class UI extends JFrame implements ActionListener {
 
             // If square-root, perform sqrt on displayed number //
             else if (name.equals("√")) {
-                calc.handleSquareRoot(currentNumAndOp, num, history, field, before, name);
+                calc.handleSquareRoot(currentNumAndOp, num, history, field, listStack, before, name);
             }
 
             // +/- button, alter numeric sign //
             else if (name.equals("+/-")) {
-                calc.handleNegateNumber(currentNumAndOp, num, history, field);
+                calc.handleNegateNumber(currentNumAndOp, num, history, field, listStack);
             }
 
             // If sin(x), perform sin(x) on displayed number //
             else if (name.equals("sin(x)")) {
-                calc.handleSin(currentNumAndOp, radians, num, history, field, before);
+                calc.handleSin(currentNumAndOp, radians, num, history, field, listStack, before);
             }
             // If cos(x), perform cos(x) on displayed number //
             else if (name.equals("cos(x)")) {
-                calc.handleCos(currentNumAndOp, radians, num, history, field, before);
+                calc.handleCos(currentNumAndOp, radians, num, history, field, listStack, before);
             }
             // If tan(x), perform tan(x) on displayed number //
             else if (name.equals("tan(x)")) {
-                calc.handleTan(currentNumAndOp, radians, num, history, field, before);
+                calc.handleTan(currentNumAndOp, radians, num, history, field, listStack, before);
             }
 
             // If 1/x, divide 1 by displayed number//
@@ -160,15 +160,15 @@ public class UI extends JFrame implements ActionListener {
             
             // If arcsin(x), perform arcsin(x) on displayed number //
             else if (name.equals("arcsin(x)")) {
-                calc.handleArcsin(currentNumAndOp, radians, num, history, field, before);
+                calc.handleArcsin(currentNumAndOp, radians, num, history, field, listStack, before);
             }
             // If arccos(x), perform arccos(x) on displayed number //
             else if (name.equals("arccos(x)")) {
-                calc.handleArccos(currentNumAndOp, radians, num, history, field, before);
+                calc.handleArccos(currentNumAndOp, radians, num, history, field, listStack, before);
             }
             // If arctan(x), perform arctan(x) on displayed number //
             else if (name.equals("arctan(x)")) {
-                calc.handleArctan(currentNumAndOp, radians, num, history, field, before);
+                calc.handleArctan(currentNumAndOp, radians, num, history, field, listStack, before);
             }
 
             // If !, perform factorial on displayed number //
@@ -178,7 +178,7 @@ public class UI extends JFrame implements ActionListener {
 
             // If %, convert displayed number to decimal-equiv percentage //
             else if (name.equals("%")) {
-                calc.handlePercent(currentNumAndOp, num, history, field, before, name);
+                calc.handlePercent(currentNumAndOp, num, history, field, listStack, before, name);
             }
 
             // AC button already implemented //
@@ -192,7 +192,7 @@ public class UI extends JFrame implements ActionListener {
 
             // If e^x, perform e^x on displayed number //
             else if (name.equals("e^x")) {
-                calc.handleEToX(currentNumAndOp, num, history, field, before);
+                calc.handleEToX(currentNumAndOp, num, history, field, listStack, before);
             }
 
             // 7 Button already implemented //
@@ -202,7 +202,7 @@ public class UI extends JFrame implements ActionListener {
 
             // If x-squared, square displayed number //
             else if (name.equals("x^2")) {
-                calc.handleSquare(currentNumAndOp, num, history, field, before, name);
+                calc.handleSquare(currentNumAndOp, num, history, field, listStack, before, name);
             }
 
             // 4 Button already implemented //
@@ -234,29 +234,29 @@ public class UI extends JFrame implements ActionListener {
 
             // If equals, add the displayed number to ArrayList and calculate result //
             else if (name.equals("=")) {
-                calc.handleEquals(currentNumAndOp, history, field, beforeText, name);
+                calc.handleEquals(currentNumAndOp, history, field, listStack, beforeText,  name);
             }
 
             else if (name.equals("d->f")) {
-                calc.handleDectoFraction(currentNumAndOp, num, history, field, before, name);
+                calc.handleDectoFraction(currentNumAndOp, num, history, field, listStack, before, name);
             }
 
             // Radian/Degree Button Already Implemented //
 
             // If 10^x, perform 10^x on displayed number //
             else if (name.equals("10^x")) {
-                calc.handleTenToX(currentNumAndOp, num, history, field, before);
+                calc.handleTenToX(currentNumAndOp, num, history, field, listStack, before);
 
             }
 
             // If π, replace diplayed number with π //
             else if (name.equals("\u03C0")) {
-                calc.handlePi(currentNumAndOp, history, field, before);
+                calc.handlePi(currentNumAndOp, history, field, listStack, before);
             }
 
             // Else, add another digit to number //
             else {
-                calc.handleDigitInput(currentNumAndOp, history, field, name);
+                calc.handleDigitInput(currentNumAndOp, history, field, listStack, name);
             }
         }
 
@@ -269,7 +269,7 @@ public class UI extends JFrame implements ActionListener {
             }
             // If equals, disregard displayed operator and calculate result //
             else if (name.equals("=")) {
-                double result = calc(currentNumAndOp);
+                double result = calc.calculate(currentNumAndOp);
                 field.setText(Double.toString(result));
                 history.setText(Double.toString(result));
                 currentNumAndOp.removeAll(currentNumAndOp);
@@ -282,11 +282,7 @@ public class UI extends JFrame implements ActionListener {
                     name.equals("e^x") || name.equals("ln(x)") || name.equals("+/-") ||
                     name.equals("log10(x)") || name.equals("10^x")) {
 
-                currentNumAndOp = new ArrayList<String>();
-                listStack.clear();
-                listStack.push(currentNumAndOp);
-                history.setText("");
-                field.setText("ERROR");
+                calc.handleError(history, field, listStack, currentNumAndOp);
             }
             // π Case //
             else if (name.equals("\u03C0")) {
@@ -314,7 +310,7 @@ public class UI extends JFrame implements ActionListener {
             }
             // Close Parenthesis //
             else if (name.equals(")")) {
-                double result = calc(currentNumAndOp);
+                double result = calc.calculate(currentNumAndOp);
                 field.setText(Double.toString(result));
                 // Remove ArrayList from stack & move pointer   //
                 currentNumAndOp.removeAll(currentNumAndOp);
@@ -330,75 +326,5 @@ public class UI extends JFrame implements ActionListener {
             }
         }
         
-    }
-    /**
-     * A function that takes an input ArrayList<String> of doubles and operators and returns the reduced result
-     * @param al
-     * @return
-     */
-    public double calc(ArrayList<String> al) {
-        int size = al.size();
-        // Edge cases //
-        if (al.size() == 0) {return 0.0;}
-        if (al.size() == 1) {return Double.parseDouble(al.get(0));}
-        else {
-            // Handle multiplication and division first, moving left-to-right //
-            for (int i = 1; i <= size - 2; i+=2) {
-                switch (al.get(i)) {
-                    case "x":
-                        double mult = Double.parseDouble(al.get(i-1))*Double.parseDouble(al.get(i+1));
-                        al.set(i-1, Double.toString(mult));
-                        al.remove(i);
-                        al.remove(i);
-                        // Set to -1, as loop will add 2 //
-                        i=-1;
-                        size = al.size();
-                        break;
-                    case "\u00F7":
-                        double div = Double.parseDouble(al.get(i-1))/Double.parseDouble(al.get(i+1));
-                        al.set(i-1, Double.toString(div));
-                        al.remove(i);
-                        al.remove(i);
-                        // Set to -1, as loop will add 2 //
-                        i=-1;
-                        size = al.size();
-                        break;
-                }
-            }
-            // Now handle addition and subtraction, again left-to-right //
-            double result = Double.parseDouble(al.get(0));
-            // Iterates over oper-double pairs //
-            for (int j = 1; j <= size - 2; j+=2) {
-                String oper = al.get(j);
-                double nxt = Double.parseDouble(al.get(j+1));
-                // Checks which operation to use //
-                switch (oper) {
-                    case "+":
-                        result += nxt;
-                        break;
-                    case "-":
-                        result -= nxt;
-                        break;
-                }
-            }
-            return result;
-        }
-    }
-    /**
-     * Returns d!
-     * @param d
-     * @return
-     */
-    public double factorial(double d) {
-        // Zero case //
-        if (d==0) {return 1.0;}
-        else {
-            double result = 1.0;
-            while (d > 1.0) {
-                result*=d;
-                d-=1;
-            }
-            return result;
-        }
     }
 }
