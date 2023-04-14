@@ -457,7 +457,7 @@ public class Calculator {
      * @param listStack - the stack of lists for undo/redo functionality
      */
     
-    public void handleClear(ArrayList<String> currentNumAndOp, JTextField history, JTextField text, Stack<ArrayList<String>> listStack) {
+    public void handleAllClear(ArrayList<String> currentNumAndOp, JTextField history, JTextField text, Stack<ArrayList<String>> listStack) {
         try {
             currentNumAndOp.clear();
             listStack.clear();
@@ -468,6 +468,24 @@ public class Calculator {
             handleError(history, text, listStack, currentNumAndOp);
         }
     }
+
+    public void handleCharClear(JTextField history, JTextField text) {
+        try {
+            String currentText = text.getText();
+            if (currentText.length() > 1) {
+                // Delete last character
+                currentText = currentText.substring(0, currentText.length() - 1);
+            } else {
+                // Clear display if only one character remaining (to offset null errors)
+                currentText = "0";
+            }
+            text.setText(currentText);
+            history.setText(currentText);
+        } catch (Exception e) {
+            // Handle errors if necessary
+        }
+    }
+
 
     /**
      * Handles the e button.
@@ -818,30 +836,52 @@ public class Calculator {
      */
     public double calculate(ArrayList<String> al) {
         int size = al.size();
-        // Edge cases //
-        if (al.size() == 0) {return 0.0;}
-        if (al.size() == 1) {return Double.parseDouble(al.get(0));}
-        else {
-            // Handle multiplication and division first, moving left-to-right //
-            for (int i = 1; i <= size - 2; i+=2) {
-                switch (al.get(i)) {
-                    case "x":
-                        double mult = Double.parseDouble(al.get(i-1))*Double.parseDouble(al.get(i+1));
-                        al.set(i-1, Double.toString(mult));
-                        al.remove(i);
-                        al.remove(i);
-                        // Set to -1, as loop will add 2 //
-                        i=-1;
-                        size = al.size();
+        // Check for edge cases
+        if (al.size() == 0) { // If ArrayList is empty
+            return 0.0; // Return 0
+        }
+        if (al.size() == 1) { // If ArrayList has only one element
+            return Double.parseDouble(al.get(0)); // Return the double value of that element
+        }
+        else { // If ArrayList has more than one element
+            // Handle multiplication, division, mod and root first, moving left-to-right
+            for (int i = 1; i <= size - 2; i+=2) { // Loop through every other element of the ArrayList
+                switch (al.get(i)) { // Check the operator at the current index
+                    case "x": // If the operator is multiplication
+                        double mult = Double.parseDouble(al.get(i-1))*Double.parseDouble(al.get(i+1)); // Perform the multiplication
+                        al.set(i-1, Double.toString(mult)); // Replace the left operand with the result
+                        al.remove(i); // Remove the operator
+                        al.remove(i); // Remove the right operand
+                        // Set to -1, as loop will add 2
+                        i=-1; // Reset the loop index to start again from the beginning
+                        size = al.size(); // Update the size of the ArrayList
                         break;
-                    case "\u00F7":
-                        double div = Double.parseDouble(al.get(i-1))/Double.parseDouble(al.get(i+1));
-                        al.set(i-1, Double.toString(div));
-                        al.remove(i);
-                        al.remove(i);
-                        // Set to -1, as loop will add 2 //
-                        i=-1;
-                        size = al.size();
+                    case "\u00F7": // If the operator is division
+                        double div = Double.parseDouble(al.get(i-1))/Double.parseDouble(al.get(i+1)); // Perform the division
+                        al.set(i-1, Double.toString(div)); // Replace the left operand with the result
+                        al.remove(i); // Remove the operator
+                        al.remove(i); // Remove the right operand
+                        // Set to -1, as loop will add 2
+                        i=-1; // Reset the loop index to start again from the beginning
+                        size = al.size(); // Update the size of the ArrayList
+                        break;
+                    case "mod": // If the operator is modulo
+                        double mod = Double.parseDouble(al.get(i-1))%Double.parseDouble(al.get(i+1)); // Perform the modulo
+                        al.set(i-1, Double.toString(mod)); // Replace the left operand with the result
+                        al.remove(i); // Remove the operator
+                        al.remove(i); // Remove the right operand
+                        // Set to -1, as loop will add 2
+                        i=-1; // Reset the loop index to start again from the beginning
+                        size = al.size(); // Update the size of the ArrayList
+                        break;
+                    case "root": // If the operator is root
+                        double root = Math.pow(Double.parseDouble(al.get(i+1)), 1.0/Double.parseDouble(al.get(i-1))); // Calculate the root
+                        al.set(i-1, Double.toString(root)); // Replace the left operand with the result
+                        al.remove(i); // Remove the operator
+                        al.remove(i); // Remove the right operand
+                        // Set to -1, as loop will add 2
+                        i=-1; // Reset the loop index to start again from the beginning
+                        size = al.size(); // Update the size of the ArrayList
                         break;
                 }
             }

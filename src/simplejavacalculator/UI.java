@@ -52,13 +52,14 @@ public class UI extends JFrame implements ActionListener {
             "x^2", "4", "5", "6", "x",
             "ln(x)", "1", "2", "3", "\u00F7",
             "(", ")", "0", ".", "=",
-            "d->f", "rad", "10^x", "\u03C0", 
+            "d->f", "rad", "10^x", "\u03C0", "root",
+            "mod", "C" 
         };
         
         panel = new JPanel();                       // Creates JPanel for the 36 buttons
         panel.setLayout(new GridLayout(9, 5)); 
         buttons = new JButton[45];                              // 38 buttons and counting
-        for (int i = 0; i < 39; i++) {
+        for (int i = 0; i < 42; i++) {
             buttons[i] = new JButton(names[i]);
             buttons[i].addActionListener(this);
             panel.add(buttons[i]); // Adds ActionListener so buttons trigger an event
@@ -95,9 +96,14 @@ public class UI extends JFrame implements ActionListener {
         String name = ((JButton) e.getSource()).getActionCommand();
         String historyText = history.getText();
 
-        // CLEAR CASE //
+        // ALL CLEAR CASE //
         if (name.equals("AC")) {
-            calc.handleClear(currentNumAndOp, history, field, listStack);
+            calc.handleAllClear(currentNumAndOp, history, field, listStack);
+        }
+
+        // Character Clear Case //
+        else if (name.equals("C")) {
+            calc.handleCharClear(history, field);
         }
 
         // rad/deg switch //
@@ -111,7 +117,7 @@ public class UI extends JFrame implements ActionListener {
         }
         
         // CASE 1: displayed text is not an operator //
-        else if (!(beforeText.equals("\u00F7") || beforeText.equals("x") || beforeText.equals("-") || beforeText.equals("+"))) {
+        else if (!(beforeText.equals("\u00F7") || beforeText.equals("x") || beforeText.equals("-") || beforeText.equals("+") || beforeText.equals("root") || beforeText.equals("mod"))) {
             double num = Double.parseDouble(beforeText);
             int divIndx = historyText.lastIndexOf("\u00F7");
             int multIndx = historyText.lastIndexOf("x");
@@ -121,7 +127,7 @@ public class UI extends JFrame implements ActionListener {
             String before = historyText.substring(0, indx+1);
 
             // If operator, add displayed number to ArrayList and display operator //
-            if (name.equals("\u00F7") || name.equals("x") || name.equals("-") || name.equals("+")) {
+            if (name.equals("\u00F7") || name.equals("x") || name.equals("-") || name.equals("+") || name.equals("root") || name.equals("mod")) {
                 calc.handleOperator(currentNumAndOp, history, field, beforeText, historyText, name);
             }
 
@@ -263,7 +269,7 @@ public class UI extends JFrame implements ActionListener {
         // CASE 2: displayed text is an operator //
         else {
             // If new operator, replace old one //
-            if (name.equals("\u00F7") || name.equals("x") || name.equals("-") || name.equals("+")) {
+            if (name.equals("\u00F7") || name.equals("x") || name.equals("-") || name.equals("+") || name.equals("sqrt") || name.equals("mod")) {
                 field.setText(name);
                 history.setText(historyText.substring(0,historyText.length()-1)+name);
             }
