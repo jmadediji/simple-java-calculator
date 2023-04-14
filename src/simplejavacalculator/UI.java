@@ -269,7 +269,7 @@ public class UI extends JFrame implements ActionListener {
         // CASE 2: displayed text is an operator //
         else {
             // If new operator, replace old one //
-            if (name.equals("\u00F7") || name.equals("x") || name.equals("-") || name.equals("+") || name.equals("sqrt") || name.equals("mod")) {
+            if (name.equals("\u00F7") || name.equals("x") || name.equals("-") || name.equals("+") || name.equals("root") || name.equals("mod")) {
                 field.setText(name);
                 history.setText(historyText.substring(0,historyText.length()-1)+name);
             }
