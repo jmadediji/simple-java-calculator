@@ -17,7 +17,14 @@ import java.util.Stack;
 import javax.swing.JTextField;
 
 public class Calculator {
-
+    
+    /**
+     * Handle error. Clear the stack and the text fields, replacing field with "ERROR" for indication.
+     * @param history - the text field to display the history of operations
+     * @param text - the text field to display the result
+     * @param listStack - the stack of number and operation lists
+     * @param currentNumAndOp - the current number and operation list
+     */
     public void handleError(JTextField history, JTextField text, Stack<ArrayList<String>> listStack, ArrayList<String> currentNumAndOp) {
         currentNumAndOp = new ArrayList<String>();
         listStack.clear();
@@ -95,14 +102,18 @@ public class Calculator {
             text.setText(complement);
             String historyText = history.getText();
             int indx = historyText.lastIndexOf(num + "");
-            String before = historyText.substring(0, indx);
-            if (num > 0) {
-                history.setText(before.substring(0, before.length() - 1) + complement);
-            } else if (num < 0) {
-                if (historyText.lastIndexOf("(") > indx) {
-                    before = historyText.substring(0, historyText.lastIndexOf("(") + 1);
+            if (indx >= 0) {
+                String before = historyText.substring(0, indx);
+                if (num > 0) {
+                    history.setText(before.substring(0, before.length() - 1) + complement);
+                } else if (num < 0) {
+                    if (historyText.lastIndexOf("(") > indx) {
+                        before = historyText.substring(0, historyText.lastIndexOf("(") + 1);
+                    }
+                    history.setText(before + complement);
                 }
-                history.setText(before + complement);
+            } else {
+                history.setText(complement);
             }
         } catch (StringIndexOutOfBoundsException e) {
             currentNumAndOp = new ArrayList<String>();
@@ -112,6 +123,7 @@ public class Calculator {
             text.setText("ERROR");
         }
     }
+
 
 
     /**
@@ -847,6 +859,15 @@ public class Calculator {
             // Handle multiplication, division, mod and root first, moving left-to-right
             for (int i = 1; i <= size - 2; i+=2) { // Loop through every other element of the ArrayList
                 switch (al.get(i)) { // Check the operator at the current index
+                    case "power": // If the operator is power
+                        double pow = Math.pow(Double.parseDouble(al.get(i+1)), Double.parseDouble(al.get(i-1))); // Calculate the power
+                        al.set(i-1, Double.toString(pow)); // Replace the left operand with the result
+                        al.remove(i); // Remove the operator
+                        al.remove(i); // Remove the right operand
+                        // Set to -1, as loop will add 2
+                        i=-1; // Reset the loop index to start again from the beginning
+                        size = al.size(); // Update the size of the ArrayList
+                        break;
                     case "x": // If the operator is multiplication
                         double mult = Double.parseDouble(al.get(i-1))*Double.parseDouble(al.get(i+1)); // Perform the multiplication
                         al.set(i-1, Double.toString(mult)); // Replace the left operand with the result
@@ -875,7 +896,7 @@ public class Calculator {
                         size = al.size(); // Update the size of the ArrayList
                         break;
                     case "root": // If the operator is root
-                        double root = Math.pow(Double.parseDouble(al.get(i+1)), 1.0/Double.parseDouble(al.get(i-1))); // Calculate the root
+                        double root = Math.pow(Double.parseDouble(al.get(i-1)), 1.0/Double.parseDouble(al.get(i+1))); // Calculate the root
                         al.set(i-1, Double.toString(root)); // Replace the left operand with the result
                         al.remove(i); // Remove the operator
                         al.remove(i); // Remove the right operand
