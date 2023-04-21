@@ -22,8 +22,9 @@ java -jar /your_calculator_directory/SimpleJavaCalculator.jar`
 ```
 
 ## :sparkles: Example
+![im g](https://user-images.githubusercontent.com/97220909/233723127-159f0004-dcad-436f-a825-862c4fa260d7.png)
 
-![Example: Java Calculator](Screenshots/screenshot.png)
+
 
 ## You might also like :monocle_face:
 
@@ -32,7 +33,7 @@ java -jar /your_calculator_directory/SimpleJavaCalculator.jar`
 [![Open-Source Simple Java Text Editor](https://github.com/pH-7/Simple-Java-Text-Editor/blob/master/Screenshots/find-replace-word-in-java-text-editor.png)](https://github.com/pH-7/Simple-Java-Text-Editor "Open-Source Simple Java Text Editor")
 
 
-## 💡 Authors
+## 💡 Original Authors
 
 ### Base Application
 
@@ -43,7 +44,9 @@ java -jar /your_calculator_directory/SimpleJavaCalculator.jar`
 - [Achintha Gunasekara](http://www.achinthagunasekara.com)
 - [xdvrx1](https://github.com/xdvrx1)
 
-
+## 💡 Repo Authors
+- **[Jesutofunmi Adediji](https://github.com/jmadediji)**
+- - **[Turell Tate](https://github.com/ttateluc)**
 ## 📮 Contact
 
 Pierre-Henry Soria: pierrehs [AT] hotmail [D0T] com
