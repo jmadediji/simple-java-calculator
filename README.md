@@ -5,6 +5,7 @@
 ![Logo Simple Java Calculator](logo.png)
 
 ---
+Our mission is to provide a user-friendly and reliable tool for performing basic arithmetic operations in Java. We aim to support the learning and development of Java programmers by offering a simple and intuitive interface, accurate and fast calculations, and clear and concise documentation. We value quality, simplicity, and customer satisfaction in our product.
 
 This calculator is **simple** with an **easy to use code** to help novices **learn how to create a calculator** program with **`Java`**.
 
