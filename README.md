@@ -46,7 +46,7 @@ java -jar /your_calculator_directory/SimpleJavaCalculator.jar`
 
 ## 💡 Repo Authors
 - **[Jesutofunmi Adediji](https://github.com/jmadediji)**
-- - **[Turell Tate](https://github.com/ttateluc)**
+- **[Turell Tate](https://github.com/ttateluc)**
 ## 📮 Contact
 
 Pierre-Henry Soria: pierrehs [AT] hotmail [D0T] com
