@@ -860,7 +860,7 @@ public class Calculator {
             for (int i = 1; i <= size - 2; i+=2) { // Loop through every other element of the ArrayList
                 switch (al.get(i)) { // Check the operator at the current index
                     case "power": // If the operator is power
-                        double pow = Math.pow(Double.parseDouble(al.get(i+1)), Double.parseDouble(al.get(i-1))); // Calculate the power
+                        double pow = Math.pow(Double.parseDouble(al.get(i-1)), Double.parseDouble(al.get(i+1))); // Calculate the power
                         al.set(i-1, Double.toString(pow)); // Replace the left operand with the result
                         al.remove(i); // Remove the operator
                         al.remove(i); // Remove the right operand
