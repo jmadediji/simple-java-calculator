@@ -5,9 +5,11 @@
 ![Logo Simple Java Calculator](logo.png)
 
 ---
-Our mission is to provide a user-friendly and reliable tool for performing basic arithmetic operations in Java. We aim to support the learning and development of Java programmers by offering a simple and intuitive interface, accurate and fast calculations, and clear and concise documentation. We value quality, simplicity, and customer satisfaction in our product. This project was forked form pH-7's repository and modified for educational purposes.
+Our mission is to provide a user-friendly and reliable tool for performing basic-to-advanced arithmetic operations in Java, emulating a more sophisticated scientific calculator. We aim to support the learning and development of Java programmers by offering a simple and intuitive interface, accurate and fast calculations, and clear and concise documentation. We value quality, simplicity, and customer satisfaction in our product. This project was forked form pH-7's repository and modified for educational purposes.
 
 This calculator is **simple** with an **easy to use code** to help novices **learn how to create a calculator** program with **`Java`**.
+
+Documentation is defined within the code. 
 
 ---
 
@@ -15,7 +17,24 @@ This calculator is **simple** with an **easy to use code** to help novices **lea
 
 This project was **originally written using `Eclipse`**, but I have **migrated it to NetBeans**.
 
-If you use the executable "SimpleJavaCalculator.jar" file and that doesn't work, you can type this in your terminal:
+## Features added
+
+Buttons: Log10(x), arcsin(x), arccos(x), arctan(x), X!, x^2, ln(x), d-f, mod, root, power, 10^x, pi, e, e^x, rad, C, +/-, ( ), Decimal(".")
+
+Stylized the layout
+
+Implemented Partial PEMDAS
+
+## Things we tried but unsupported in build:
+
+Full parenthetical notation
+
+Handling “+/-” like an operand
+
+
+## How to access old and new features (buttons and style)
+
+Double-click the executable "SimpleJavaCalculator.jar" file.If you use the executable "SimpleJavaCalculator.jar" file and that doesn't work, you can type this in your terminal:
 
 ```shell
 java -jar /your_calculator_directory/SimpleJavaCalculator.jar`
