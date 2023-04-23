@@ -23,7 +23,7 @@ We were responsible for writing the documentation and comments for the code, usi
 We managed the project and coordinated amongst one another. Turell set up the GitHub repository and we modified it. We reviewed and merged the code from different branches, and ensured that the project met the requirements and specifications of the curriculum.
 
 
-This project was **originally written using `Eclipse`**, but I have **migrated it to NetBeans**.
+This project was **originally written using `Eclipse`**, but ph-7 **migrated it to NetBeans**.
 
 ## Features added
 
