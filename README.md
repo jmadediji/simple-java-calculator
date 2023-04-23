@@ -14,6 +14,14 @@ Documentation is defined within the code.
 ---
 
 </div>
+This project was completed by a team of two members: Jesutofunmi and Turell. Turell designed and implemented the initial graphical user interface (GUI) of the calculator, using Java Swing components. Jesutofunmi wrote code to handle the user input and output events, and to call the appropriate methods from the calculator class.
+
+Jesutofunmi was responsible for creating and testing the logic and functionality of the calculator. Shs manually tested the old and new implementations of basic arithmetic operations, such as addition, subtraction, multiplication and division, as well as the advanced functions like decimal to fraction, power and factorial.
+
+We were responsible for writing the documentation and comments for the code, using JavaDoc standards. Turell restructured the codebases for PEMDAS and parenthetical notation, and Jesutofunmi helped with debugging and fixing any errors or bugs that occurred during the development process.
+
+We managed the project and coordinated amongst one another. Turell set up the GitHub repository and we modified it. We reviewed and merged the code from different branches, and ensured that the project met the requirements and specifications of the curriculum.
+
 
 This project was **originally written using `Eclipse`**, but I have **migrated it to NetBeans**.
 
