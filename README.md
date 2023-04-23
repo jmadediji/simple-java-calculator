@@ -9,7 +9,9 @@ Our mission is to provide a user-friendly and reliable tool for performing basic
 
 This calculator is **simple** with an **easy to use code** to help novices **learn how to create a calculator** program with **`Java`**.
 
-Documentation is defined within the code. 
+Documentation is defined within the code.
+
+[In-Depth Documentation](https://youtu.be/VkjfyKp1Hsw)
 
 [Testing Procedure](https://github.com/ttateluc/simple-java-calculator/files/11302800/Testing.Procedure.Group.6.pdf)
 
