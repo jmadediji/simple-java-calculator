@@ -11,6 +11,9 @@ This calculator is **simple** with an **easy to use code** to help novices **lea
 
 Documentation is defined within the code. 
 
+[Testing Procedure](https://github.com/ttateluc/simple-java-calculator/files/11302800/Testing.Procedure.Group.6.pdf)
+
+
 ---
 
 </div>
